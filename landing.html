@@ -20,7 +20,17 @@
                 </select>
             </div>
             <div class="controls">
-                <button class="button button--default button--lg" onclick="redirectToGameMode()">Start</button>
+                <button class="button button--default button--lg" onclick="showGameBoard()">Start</button>
+            </div>
+        </div>
+        <div class="game-container">
+            <div class="stats">
+                <div class="moves">0 moves</div>
+                <div class="timer">time: 0 sec</div>
+            </div>
+            <div class="board-container">
+                <div class="board" data-dimension="4"></div>
+                <div class="win">You won!</div>
             </div>
         </div>
     </div>
