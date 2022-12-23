@@ -15,3 +15,8 @@
 .game-container {
     display: none;
 }
+
+.stats {
+    color: #FFF;
+    font-size: 14pt;
+}
