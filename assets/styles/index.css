@@ -1,0 +1,47 @@
+@font-face {
+    font-family: Fredoka;
+    src: url(../fonts/FredokaOne-Regular.ttf);
+}
+
+html {
+    overflow: hidden;
+    background: linear-gradient(325deg, #6f00fc 0%, #fc7900 50%, #fcc700 100%);
+    font-family: Fredoka, serif;
+}
+
+body {
+    margin: 0;
+}
+
+/* BUTTONS */
+.button {
+    border-radius: 5px;
+    padding: 10px 20px;
+    font-size: 18pt;
+    border: 0;
+    cursor: pointer;
+    font-family: Fredoka, serif;
+}
+
+.button--default {
+    background: #282A3A;
+    color: #FFF;
+}
+
+.button--lg {
+    border-radius: 15px;
+    padding: 20px 40px;
+    font-size: 30pt;
+}
+
+/* INPUTS */
+
+.input-item {
+    display: flex;
+    flex-direction: column;
+}
+
+.input-item .input-item__field {
+    border-radius: 5px;
+    padding: 5px;
+}

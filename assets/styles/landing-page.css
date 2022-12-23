@@ -1,0 +1,22 @@
+.container {
+    width: 100vw;
+    height: 100vh;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+
+.form-container {
+    display: flex;
+    flex-direction: column;
+    gap: 20px;
+}
+
+.game-container {
+    display: none;
+}
+
+.stats {
+    color: #FFF;
+    font-size: 14pt;
+}

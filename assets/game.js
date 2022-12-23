@@ -143,6 +143,3 @@ const attachEventListeners = () => {
         }
     })
 }
-
-generateGame()
-attachEventListeners()
