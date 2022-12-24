@@ -11,6 +11,7 @@
     <link rel="stylesheet" href="assets/styles/landing-page.css" />
     <link rel="stylesheet" href="assets/board.css" />
 </head>
+
 <body>
     <div class="container">
         <div class="form-container">
@@ -25,6 +26,11 @@
             </div>
         </div>
         <div class="game-container">
+            <div class="controls button--text--right">
+                <button class="button button--default" onclick="showGameBoard()">Retry</button>
+                <button class="button button--default" href="./index.html">Home</button>
+
+            </div>
             <div class="stats">
                 <div class="moves">0 moves</div>
                 <div class="timer">time: 0 sec</div>
@@ -39,4 +45,5 @@
     <script src="assets/scripts/landing.js"></script>
     <script src="assets/game.js"></script>
 </body>
+
 </html>

@@ -4,7 +4,7 @@ const selectors = {
     moves: document.querySelector('.moves'),
     timer: document.querySelector('.timer'),
     start: document.querySelector('button'),
-    win: document.querySelector('.win')
+    win: document.querySelector('.win'),
 }
 
 const state = {
@@ -13,6 +13,32 @@ const state = {
     totalFlips: 0,
     totalTime: 0,
     loop: null
+}
+var timerConfigured = false
+
+var map = {
+    "Uncle Iroh": [
+        "Are you so busy fighting you cannot see your own ship has set sail?"
+    ],
+    "Terminator": [
+        "I will be back"
+    ],
+    "Henry Ford": [
+        "The only real mistake is the one from which we learn nothing."
+    ],
+    "Elbert Hubbard": [
+        "Positive anything is better than negative nothing."
+    ],
+    "William Shakespeare": [
+        "To be or not to be"
+    ],
+    "Bruce Lee": [
+        "A fight is not won by one punch or kick. Either learn to endure or.",
+        "I am not teaching you anything. I just help you to explore yourself."
+    ],
+    "J.R.R. Tolkien": [
+        "Not all those who wander are lost."
+    ]
 }
 
 const shuffle = array => {
@@ -40,32 +66,8 @@ const pickRandom = (array, items) => {
         randomPicks.push(randomValue[1])
         clonedArray.splice(randomIndex, 1)
     }
-
+    console.log('random picks')
     return randomPicks
-}
-var map = {
-    "Uncle Iroh": [
-        "Are you so busy fighting you cannot see your own ship has set sail?"
-    ],
-    "Terminator": [
-        "I will be back"
-    ],
-    "Henry Ford": [
-        "The only real mistake is the one from which we learn nothing."
-    ],
-    "Elbert Hubbard": [
-        "Positive anything is better than negative nothing."
-    ],
-    "William Shakespeare": [
-        "To be or not to be"
-    ],
-    "Bruce Lee": [
-        "A fight is not won by one punch or kick. Either learn to endure or.",
-        "I am not teaching you anything. I just help you to explore yourself."
-    ],
-    "J.R.R. Tolkien": [
-        "Not all those who wander are lost."
-    ]
 }
 
 const generateGame = () => {
@@ -79,10 +81,8 @@ const generateGame = () => {
     for (const [key, value] of Object.entries(map)) {
         value.forEach(element => {
             choiches.push([key, element])
-            // choiches.push(element)
         })
     }
-
     const picks = pickRandom(choiches, (dimensions * dimensions) / 2)
     const items = shuffle([...picks])
     const cards = `
@@ -95,22 +95,26 @@ const generateGame = () => {
             `).join('')}
        </div>
     `
-
+    // selectors.board.replaceWith(document.querySelector('.board'))
     const parser = new DOMParser().parseFromString(cards, 'text/html')
-
     selectors.board.replaceWith(parser.querySelector('.board'))
 }
 
 const startGame = () => {
+    console.log("reset timer and moves")
     state.gameStarted = true
-    selectors.start.classList.add('disabled')
+    // selectors.start.classList.add('disabled')
+    state.totalTime = 0
+    state.totalFlips = 0
+    if (!timerConfigured) {
+        timerConfigured = true
+        state.loop = setInterval(() => {
+            state.totalTime++
 
-    state.loop = setInterval(() => {
-        state.totalTime++
-
-        selectors.moves.innerText = `${state.totalFlips} moves`
-        selectors.timer.innerText = `time: ${state.totalTime} sec`
-    }, 1000)
+            selectors.moves.innerText = `${state.totalFlips} moves`
+            selectors.timer.innerText = `time: ${state.totalTime} sec`
+        }, 1000)
+    }
 }
 
 const flipBackCards = () => {

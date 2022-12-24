@@ -34,6 +34,10 @@ body {
     font-size: 30pt;
 }
 
+.button--text--right{
+	text-align: right;
+}
+
 /* INPUTS */
 
 .input-item {
