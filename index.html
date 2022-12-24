@@ -26,14 +26,15 @@
             </div>
         </div>
         <div class="game-container">
-            <div class="controls button--text--right">
-                <button class="button button--default" onclick="showGameBoard()">Retry</button>
-                <button class="button button--default" href="./index.html">Home</button>
-
-            </div>
-            <div class="stats">
-                <div class="moves">0 moves</div>
-                <div class="timer">time: 0 sec</div>
+            <div class="game-container__header">
+                <div class="stats">
+                    <div class="moves">0 moves</div>
+                    <div class="timer">time: 0 sec</div>
+                </div>
+                <div class="controls">
+                    <button class="button button--default" onclick="showGameBoard()">Retry</button>
+                    <button class="button button--default" href="./index.html">Home</button>
+                </div>
             </div>
             <div class="board-container">
                 <div class="board" data-dimension="4"></div>

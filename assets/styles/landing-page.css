@@ -16,7 +16,13 @@
     display: none;
 }
 
+.game-container__header {
+    display: flex;
+    margin-bottom: 10px;
+}
+
 .stats {
     color: #FFF;
     font-size: 14pt;
+    flex: 1;
 }
