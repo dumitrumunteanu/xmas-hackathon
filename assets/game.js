@@ -95,15 +95,12 @@ const generateGame = () => {
             `).join('')}
        </div>
     `
-    // selectors.board.replaceWith(document.querySelector('.board'))
     const parser = new DOMParser().parseFromString(cards, 'text/html')
     selectors.board.replaceWith(parser.querySelector('.board'))
 }
 
 const startGame = () => {
-    console.log("reset timer and moves")
     state.gameStarted = true
-    // selectors.start.classList.add('disabled')
     state.totalTime = 0
     state.totalFlips = 0
     if (!timerConfigured) {
