@@ -21,6 +21,7 @@ body {
     border: 0;
     cursor: pointer;
     font-family: Fredoka, serif;
+    width: 100%;
 }
 
 .button--default {
@@ -39,9 +40,11 @@ body {
 .input-item {
     display: flex;
     flex-direction: column;
+    font-size: 20pt;
 }
 
 .input-item .input-item__field {
     border-radius: 5px;
     padding: 5px;
+    font-size: 20pt;
 }
