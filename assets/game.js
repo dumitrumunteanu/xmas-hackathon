@@ -14,27 +14,28 @@ const state = {
     totalTime: 0,
     loop: null
 }
+
 var timerConfigured = false
 
 var map = {
-    "Uncle Iroh": [
-        "Are you so busy fighting you cannot see your own ship has set sail?"
+    "Charles Dickens": [
+        "Procrastination is the thief of time, collar him."
     ],
-    "Terminator": [
-        "I will be back"
+    "Sir Arthur Conan Doyle": [
+        "You see, but you do not observe. The distinction is clear."
     ],
-    "Henry Ford": [
-        "The only real mistake is the one from which we learn nothing."
+    "Alan Alexander Milne": [
+        "A bear, however hard he tries, grows tubby without exercise."
     ],
-    "Elbert Hubbard": [
-        "Positive anything is better than negative nothing."
+    "J.K. Rowling": [
+        "Time will not slow down when something unpleasant lies ahead.",
+        "It matters not what someone is born, but what they grow to be."
     ],
     "William Shakespeare": [
         "To be or not to be"
     ],
-    "Bruce Lee": [
-        "A fight is not won by one punch or kick. Either learn to endure or.",
-        "I am not teaching you anything. I just help you to explore yourself."
+    "George Orwell": [
+        "War is peace. Freedom is slavery. Ignorance is strength.",
     ],
     "J.R.R. Tolkien": [
         "Not all those who wander are lost."
@@ -66,7 +67,7 @@ const pickRandom = (array, items) => {
         randomPicks.push(randomValue[1])
         clonedArray.splice(randomIndex, 1)
     }
-    console.log('random picks')
+
     return randomPicks
 }
 
