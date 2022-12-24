@@ -4,7 +4,7 @@ const selectors = {
     moves: document.querySelector('.moves'),
     timer: document.querySelector('.timer'),
     start: document.querySelector('button'),
-    win: document.querySelector('.win')
+    win: document.querySelector('.win'),
 }
 
 const state = {
@@ -13,6 +13,33 @@ const state = {
     totalFlips: 0,
     totalTime: 0,
     loop: null
+}
+
+var timerConfigured = false
+
+var map = {
+    "Charles Dickens": [
+        "Procrastination is the thief of time, collar him."
+    ],
+    "Sir Arthur Conan Doyle": [
+        "You see, but you do not observe. The distinction is clear."
+    ],
+    "Alan Alexander Milne": [
+        "A bear, however hard he tries, grows tubby without exercise."
+    ],
+    "J.K. Rowling": [
+        "Time will not slow down when something unpleasant lies ahead.",
+        "It matters not what someone is born, but what they grow to be."
+    ],
+    "William Shakespeare": [
+        "To be or not to be"
+    ],
+    "George Orwell": [
+        "War is peace. Freedom is slavery. Ignorance is strength.",
+    ],
+    "J.R.R. Tolkien": [
+        "Not all those who wander are lost."
+    ]
 }
 
 const shuffle = array => {
@@ -43,30 +70,6 @@ const pickRandom = (array, items) => {
 
     return randomPicks
 }
-var map = {
-    "Charles Dickens": [
-        "Procrastination is the thief of time, collar him."
-    ],
-    "Sir Arthur Conan Doyle": [
-        "You see, but you do not observe. The distinction is clear."
-    ],
-    "Alan Alexander Milne": [
-        "A bear, however hard he tries, grows tubby without exercise."
-    ],
-    "J.K. Rowling": [
-        "Time will not slow down when something unpleasant lies ahead.",
-        "It matters not what someone is born, but what they grow to be."
-    ],
-    "William Shakespeare": [
-        "To be or not to be"
-    ],
-    "George Orwell": [
-        "War is peace. Freedom is slavery. Ignorance is strength.",
-    ],
-    "J.R.R. Tolkien": [
-        "Not all those who wander are lost."
-    ]
-}
 
 const generateGame = () => {
     const dimensions = selectors.board.getAttribute('data-dimension')
@@ -79,10 +82,8 @@ const generateGame = () => {
     for (const [key, value] of Object.entries(map)) {
         value.forEach(element => {
             choiches.push([key, element])
-            // choiches.push(element)
         })
     }
-
     const picks = pickRandom(choiches, (dimensions * dimensions) / 2)
     const items = shuffle([...picks])
     const cards = `
@@ -95,22 +96,23 @@ const generateGame = () => {
             `).join('')}
        </div>
     `
-
     const parser = new DOMParser().parseFromString(cards, 'text/html')
-
     selectors.board.replaceWith(parser.querySelector('.board'))
 }
 
 const startGame = () => {
     state.gameStarted = true
-    selectors.start.classList.add('disabled')
+    state.totalTime = 0
+    state.totalFlips = 0
+    if (!timerConfigured) {
+        timerConfigured = true
+        state.loop = setInterval(() => {
+            state.totalTime++
 
-    state.loop = setInterval(() => {
-        state.totalTime++
-
-        selectors.moves.innerText = `${state.totalFlips} moves`
-        selectors.timer.innerText = `time: ${state.totalTime} sec`
-    }, 1000)
+            selectors.moves.innerText = `${state.totalFlips} moves`
+            selectors.timer.innerText = `time: ${state.totalTime} sec`
+        }, 1000)
+    }
 }
 
 const flipBackCards = () => {

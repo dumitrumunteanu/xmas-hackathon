@@ -11,6 +11,7 @@
     <link rel="stylesheet" href="assets/styles/landing-page.css" />
     <link rel="stylesheet" href="assets/board.css" />
 </head>
+
 <body>
     <div class="container">
         <div class="form-container">
@@ -18,16 +19,25 @@
                 <label for="game-modes">Game mode:</label>
                 <select class="input-item__field" name="game-modes" id="game-modes">
                     <option value="quote-book">Quote - Book</option>
+                    <option value="quote-author">Quote - Author</option>
+                    <option value="movie-scene">Movie - Scene</option>
                 </select>
             </div>
             <div class="controls">
                 <button class="button button--default button--lg" onclick="showGameBoard()">Start</button>
             </div>
+            <img class="racoon-bg" src="assets/images/racoon.png" alt="racoon">
         </div>
         <div class="game-container">
-            <div class="stats">
-                <div class="moves">0 moves</div>
-                <div class="timer">time: 0 sec</div>
+            <div class="game-container__header">
+                <div class="stats">
+                    <div class="moves">0 moves</div>
+                    <div class="timer">time: 0 sec</div>
+                </div>
+                <div class="controls">
+                    <button class="button button--default">Retry</button>
+                    <button class="button button--default" onclick="location.reload()">Home</button>
+                </div>
             </div>
             <div class="board-container">
                 <div class="board" data-dimension="4"></div>
@@ -39,4 +49,5 @@
     <script src="assets/scripts/landing.js"></script>
     <script src="assets/game.js"></script>
 </body>
+
 </html>
