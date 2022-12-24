@@ -35,12 +35,37 @@ const pickRandom = (array, items) => {
 
     for (let index = 0; index < items; index++) {
         const randomIndex = Math.floor(Math.random() * clonedArray.length)
-
-        randomPicks.push(clonedArray[randomIndex])
+        var randomValue = clonedArray[randomIndex]
+        randomPicks.push(randomValue[0])
+        randomPicks.push(randomValue[1])
         clonedArray.splice(randomIndex, 1)
     }
 
     return randomPicks
+}
+var map = {
+    "Uncle Iroh": [
+        "Are you so busy fighting you cannot see your own ship has set sail?"
+    ],
+    "Terminator": [
+        "I will be back"
+    ],
+    "Henry Ford": [
+        "The only real mistake is the one from which we learn nothing."
+    ],
+    "Elbert Hubbard": [
+        "Positive anything is better than negative nothing."
+    ],
+    "William Shakespeare": [
+        "To be or not to be"
+    ],
+    "Bruce Lee": [
+        "A fight is not won by one punch or kick. Either learn to endure or.",
+        "I am not teaching you anything. I just help you to explore yourself."
+    ],
+    "J.R.R. Tolkien": [
+        "Not all those who wander are lost."
+    ]
 }
 
 const generateGame = () => {
@@ -50,9 +75,16 @@ const generateGame = () => {
         throw new Error("The dimension of the board must be an even number.")
     }
 
-    const emojis = ['Are you so busy fighting you cannot see your own ship has set sail?', 'I will be back', 'The only real mistake is the one from which we learn nothing.', 'Positive anything is better than negative nothing.', 'To be or not to be', 'A fight is not won by one punch or kick. Either learn to endure or .', 'I am not teaching you anything. I just help you to explore yourself.', 'Not all those who wander are lost.']
-    const picks = pickRandom(emojis, (dimensions * dimensions) / 2)
-    const items = shuffle([...picks, ...picks])
+    var choiches = []
+    for (const [key, value] of Object.entries(map)) {
+        value.forEach(element => {
+            choiches.push([key, element])
+            // choiches.push(element)
+        })
+    }
+
+    const picks = pickRandom(choiches, (dimensions * dimensions) / 2)
+    const items = shuffle([...picks])
     const cards = `
         <div class="board" style="grid-template-columns: repeat(${dimensions}, auto)">
             ${items.map(item => `
@@ -103,8 +135,9 @@ const flipCard = card => {
 
     if (state.flippedCards === 2) {
         const flippedCards = document.querySelectorAll('.flipped:not(.matched)')
-
-        if (flippedCards[0].innerText === flippedCards[1].innerText) {
+        var card1Elements = map[flippedCards[0].innerText]
+        var card2Elements = map[flippedCards[1].innerText]
+        if ((card1Elements !== undefined && card1Elements.includes(flippedCards[1].innerText)) || ((card2Elements !== undefined && card2Elements.includes(flippedCards[0].innerText)))) {
             flippedCards[0].classList.add('matched')
             flippedCards[1].classList.add('matched')
         }
